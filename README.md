@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/LKS007/task_manager.svg?branch=master)](https://travis-ci.org/LKS007/task_manager)
 # README
 
 This README would normally document whatever steps are necessary to get the
