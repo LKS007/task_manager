@@ -187,6 +187,9 @@ GEM
       ffi (~> 1.0)
     ref (2.0.0)
     regexp_parser (1.3.0)
+    responders (2.4.0)
+      actionpack (>= 4.2.0, < 5.3)
+      railties (>= 4.2.0, < 5.3)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -300,6 +303,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.2)
+  responders
   rubocop
   sass-rails (~> 5.0)
   selenium-webdriver

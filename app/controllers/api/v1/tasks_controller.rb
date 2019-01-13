@@ -1,4 +1,6 @@
 class Api::V1::TasksController < Api::V1::ApplicationController
+  respond_to :json
+
   def index
     q_params = params[:q] || { s: 'id asc' }
 
@@ -23,7 +25,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
 
   def create
     task = current_user.my_tasks.new(task_params)
-    
+
     if task.save
       respond_with(task, location: nil)
     else
