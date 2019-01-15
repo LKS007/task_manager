@@ -18,7 +18,7 @@ module Concerns
 
     def current_user
       return if session[:user_id].blank?
-      @_current_user ||= User.find(session[:user_id])
+      @_current_user ||= User.find_by(id: session[:user_id])
     end
   end
 end

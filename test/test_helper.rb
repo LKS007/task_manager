@@ -1,5 +1,3 @@
-require 'simplecov'
-SimpleCov.start
 require 'coveralls'
 Coveralls.wear!('rails')
 ENV['RAILS_ENV'] ||= 'test'
