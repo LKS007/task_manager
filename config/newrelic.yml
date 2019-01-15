@@ -1,0 +1,18 @@
+common: &default_settings
+  license_key: 3e3372dc8fea57def29ee1951b7a71e1cd78022a
+  app_name: Task Manager
+  log_level: info
+development:
+  <<: *default_settings
+  app_name: Task Manager (Development)
+
+test:
+  <<: *default_settings
+  monitor_mode: false
+
+staging:
+  <<: *default_settings
+  app_name: Task Manager (Staging)
+
+production:
+  <<: *default_settings
