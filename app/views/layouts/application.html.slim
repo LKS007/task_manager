@@ -4,7 +4,7 @@ html lang="en"
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    title= content_for?(:title) ? yield(:title) : "Tutorial_project"
+    title= content_for?(:title) ? yield(:title) : "Task manager"
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
@@ -16,10 +16,10 @@ html lang="en"
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand href="#"Tutorial_project
+      a.navbar-brand href="#" Task manager
       .navbar-collapse.collapse.navbar-responsive-collapse
         ul.nav.navbar-nav
-          li= link_to "Board", "board_path"
+          li= link_to "Board", board_path
           -if current_user
             li= link_to current_user.first_name
             li= link_to "Log out", session_path, method: "delete", confirm: "confirm?", remote: true
