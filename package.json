@@ -1,5 +1,7 @@
 {
   "name": "task_manager",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "webpacker-react": "^0.3.2"
+  }
 }
