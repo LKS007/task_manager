@@ -16,13 +16,19 @@ html lang="en"
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand href="#" Task manager
-      .navbar-collapse.collapse.navbar-responsive-collapse
+      .col-lg-9
+        a.navbar-brand href=root_path Task manager
+        - if current_user
+              .navbar-collapse.collapse.navbar-responsive-collapse
+                ul.nav.navbar-nav
+                  li= link_to "Board", root_path
+                  - if current_user.is_a? Admin
+                    li= link_to "Admin page", admin_users_url
+      .col-lg-3
         ul.nav.navbar-nav
-          li= link_to "Board", board_path
           -if current_user
-            li= link_to current_user.first_name
-            li= link_to "Log out", session_path, method: "delete", confirm: "confirm?", remote: true
+            li= link_to current_user.name
+            li= link_to "Log out", session_path, method: "delete"
           -else
             li= link_to "Sign in", new_session_path
             li= link_to "Sign up", new_developer_path
