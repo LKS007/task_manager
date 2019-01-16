@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :task do
-    name { generate :task_name }
-    description { generate :description }
+    name
+    description
     author_id { 1 }
     assignee_id { 1 }
     state { "MyString" }
