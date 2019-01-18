@@ -5,6 +5,7 @@
     "@rails/webpacker": "3.5",
     "babel-preset-react": "^6.24.1",
     "react": "^16.7.0",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.7.0",
     "react-trello": "^2.0.9",
     "webpacker-react": "^0.3.2"
