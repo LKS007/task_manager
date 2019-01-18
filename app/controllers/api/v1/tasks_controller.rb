@@ -45,11 +45,11 @@ class Api::V1::TasksController < Api::V1::ApplicationController
 
   def destroy
     task = Task.find(params[:id])
-      if task.destroy
-        head(:ok)
-      else
-        render(json: { errors: task.errors }, status: :unprocessable_entity)
-      end
+    if task.destroy
+      head(:ok)
+    else
+      render(json: { errors: task.errors }, status: :unprocessable_entity)
+    end
   end
 
   private
