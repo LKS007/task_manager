@@ -124,7 +124,7 @@ export default class EditPopup extends React.Component {
                 />
               </FormGroup>
             </form>
-            Author: {this.state.author.first_name} {this.state.author.last_name}
+            Author: {this.state.task.author.first_name} {this.state.task.author.last_name}
           </Modal.Body>
 
           <Modal.Footer>
