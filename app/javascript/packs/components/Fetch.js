@@ -14,6 +14,10 @@ function headers () {
   }
 }
 
+export function fetchJson ({method, route, resource, params, body}) {
+  return fetch(method, route(resource, {...params, format: 'json'}), body)
+}
+
 export function fetch (method, url, body) {
   const options = {
     method,

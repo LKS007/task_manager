@@ -1,10 +1,11 @@
 import React from 'react'
 import Board from 'react-trello'
-import { fetch } from './Fetch'
+import { fetch, fetchJson } from './Fetch'
 import LaneHeader from './LaneHeader';
 import { Button } from 'react-bootstrap';
 import AddPopup from './AddPopup';
 import EditPopup from './EditPopup';
+import Routes from 'routes';
 
 export default class TasksBoard extends React.Component {
   state = {
@@ -76,7 +77,13 @@ export default class TasksBoard extends React.Component {
   }
 
   fetchLine(state, page = 1) {
-    return fetch('GET', window.Routes.api_v1_tasks_path({ q: { state_eq: state }, page: page, per_page: 10, format: 'json' })).then(({data}) => {
+    const params = {
+      method: 'GET',
+      route: Routes.api_v1_tasks_path,
+      params: { q: { state_eq: state }, page: page, per_page: 10 }
+    };
+
+    return fetchJson(params).then(({data}) => {
       return data;
     })
   }
@@ -94,7 +101,13 @@ export default class TasksBoard extends React.Component {
   }
 
   handleDragEnd = (cardId, sourceLaneId, targetLaneId) => {
-    fetch('PUT', window.Routes.api_v1_task_path(cardId, { format: 'json' }), { task: { state: targetLaneId } })
+    const params = {
+      method: 'PUT',
+      route: Routes.api_v1_task_path,
+      resource: cardId,
+      body: { task: { state: targetLaneId } }
+    }
+    fetchJson(params)
       .then(() => {
         this.loadLine(sourceLaneId);
         this.loadLine(targetLaneId);
@@ -139,6 +152,7 @@ export default class TasksBoard extends React.Component {
   }
 
   render() {
+    const {editPopupShow, editCardId, addPopupShow} = this.state;
     return <div>
       <h1>Your tasks</h1>
       <Button bsStyle="primary" onClick={this.handleAddShow}>Create new task</Button>
@@ -153,12 +167,12 @@ export default class TasksBoard extends React.Component {
         onCardClick={this.onCardClick}
       />
       <EditPopup
-        show = {this.state.editPopupShow}
+        show = {editPopupShow}
         onClose={this.handleEditClose}
-        cardId ={this.state.editCardId}
+        cardId ={editCardId}
       />
       <AddPopup
-        show = {this.state.addPopupShow}
+        show = {addPopupShow}
         onClose={this.handleAddClose}
       />
     </div>;
