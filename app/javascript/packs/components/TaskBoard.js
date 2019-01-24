@@ -105,10 +105,14 @@ export default class TasksBoard extends React.Component {
       method: 'PUT',
       route: Routes.api_v1_task_path,
       resource: cardId,
-      body: { task: { state: targetLaneId } }
+      body: { task: { state_event: targetLaneId } }
     }
     fetchJson(params)
       .then(() => {
+        this.loadLine(sourceLaneId);
+        this.loadLine(targetLaneId);
+      }).catch( error => {
+        alert(error.message);
         this.loadLine(sourceLaneId);
         this.loadLine(targetLaneId);
       });
