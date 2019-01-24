@@ -62,7 +62,8 @@ export default class EditPopup extends React.Component {
       route: Routes.api_v1_task_path,
       resource: this.props.cardId,
       body: {
-        ...this.state.task
+        ...this.state.task,
+        assignee_id: this.state.task.assignee.id
       }
     };
     fetchJson(params).then( response => {
