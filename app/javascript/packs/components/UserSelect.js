@@ -9,7 +9,8 @@ export default class UserSelect extends Component {
   }
 
   getOptionLabel = (option) => {
-    return option.first_name + ' ' + option.last_name
+    const { first_name, last_name } = option;
+    return `${first_name} ${last_name}`;
   }
 
   getOptionValue = (option) => {
@@ -17,7 +18,7 @@ export default class UserSelect extends Component {
   }
 
   loadOptions = (inputValue) => {
-  	const params = {
+    const params = {
       method: 'GET',
       route: Routes.api_v1_users_path,
       body: {
@@ -40,8 +41,8 @@ export default class UserSelect extends Component {
     this.loadOptions();
   }
 
-	render() {
-		const { isDisabled, value, onChange } = this.props;
+  render() {
+    const { isDisabled, value, onChange } = this.props;
     return (
       <div>
         <AsyncSelect
