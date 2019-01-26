@@ -1,6 +1,6 @@
 import React from 'react'
 import Board from 'react-trello'
-import { fetch, fetchJson } from './Fetch'
+import { fetchJson } from './Fetch'
 import LaneHeader from './LaneHeader';
 import { Button } from 'react-bootstrap';
 import AddPopup from './AddPopup';
@@ -105,10 +105,14 @@ export default class TasksBoard extends React.Component {
       method: 'PUT',
       route: Routes.api_v1_task_path,
       resource: cardId,
-      body: { task: { state: targetLaneId } }
+      body: { task: { state_event: targetLaneId } }
     }
     fetchJson(params)
       .then(() => {
+        this.loadLine(sourceLaneId);
+        this.loadLine(targetLaneId);
+      }).catch( error => {
+        alert(error.message);
         this.loadLine(sourceLaneId);
         this.loadLine(targetLaneId);
       });
@@ -122,7 +126,7 @@ export default class TasksBoard extends React.Component {
     this.setState({ addPopupShow: false });
     if (added == true) {
       this.loadLine('new_task');
-    };
+    }
   }
 
   onCardClick = (cardId) => {

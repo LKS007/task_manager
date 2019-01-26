@@ -1,7 +1,8 @@
 import React from 'react';
 import { Modal, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
-import { fetch, fetchJson } from './Fetch';
+import { fetchJson } from './Fetch';
 import Routes from 'routes';
+import UserSelect from './UserSelect';
 
 export default class EditPopup extends React.Component {
   state = {
@@ -44,7 +45,7 @@ export default class EditPopup extends React.Component {
   componentDidUpdate (prevProps) {
     if (this.props.cardId != null && this.props.cardId !== prevProps.cardId) {
       this.loadCard(this.props.cardId);
-    };
+    }
   }
 
   handleNameChange = (e) => {
@@ -61,7 +62,8 @@ export default class EditPopup extends React.Component {
       route: Routes.api_v1_task_path,
       resource: this.props.cardId,
       body: {
-        ...this.state.task
+        ...this.state.task,
+        assignee_id: this.state.task.assignee.id
       }
     };
     fetchJson(params).then( response => {
@@ -92,6 +94,14 @@ export default class EditPopup extends React.Component {
     }).catch( error => {
       alert(error.message);
     });
+  }
+
+  handleAuthorChange = (value) => {
+    this.setState({ task: { ...this.state.task, author: value }});
+  }
+
+   handleAssigneeChange = (value) => {
+    this.setState({ task: { ...this.state.task, assignee: value }});
   }
 
   render () {
@@ -141,6 +151,23 @@ export default class EditPopup extends React.Component {
                   value={task.description}
                   placeholder='Set the description for the task'
                   onChange={this.handleDecriptionChange}
+                />
+              </FormGroup>
+              <FormGroup controlId="formAssigneeId">
+                <ControlLabel>Assignee</ControlLabel>
+                <UserSelect
+                  id="Assignee"
+                  onChange={this.handleAssigneeChange}
+                  value={task.assignee}
+                />
+              </FormGroup>
+              <FormGroup controlId="formAuthorId">
+                <ControlLabel>Author</ControlLabel>
+                <UserSelect
+                  id="Author"
+                  isDisabled={true}
+                  value={task.author}
+                  onChange={this.handleAuthorChange}
                 />
               </FormGroup>
             </form>

@@ -1,6 +1,5 @@
 class Api::V1::TasksController < Api::V1::ApplicationController
-  respond_to :json
-  
+
   def index
     q_params = params[:q] || { s: 'id asc' }
 

@@ -1,7 +1,8 @@
-import React from 'react';
+import React from 'react'
 import { Modal, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
-import { fetch, fetchJson } from './Fetch';
+import { fetchJson } from './Fetch';
 import Routes from 'routes';
+import UserSelect from './UserSelect';
 
 export default class EditPopup extends React.Component {
   state = {
@@ -41,6 +42,10 @@ export default class EditPopup extends React.Component {
     });
   }
 
+  handleAssigneeChange = (value) => {
+    this.setState({ assignee: value });
+  }
+
   render () {
     const {show, onClose} = this.props;
     const {name, description} = this.state;
@@ -70,6 +75,14 @@ export default class EditPopup extends React.Component {
                 value={description}
                 placeholder='Set the description for the task'
                 onChange={this.handleDecriptionChange}
+              />
+            </FormGroup>
+            <FormGroup controlId="formAssigneeId">
+              <ControlLabel>Assignee</ControlLabel>
+              <UserSelect
+                id="Assignee"
+                onChange={this.handleAssigneeChange}
+                value={this.state.assignee}
               />
             </FormGroup>
           </form>
