@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AsyncSelect from 'react-select/lib/Async';
-import { fetch, fetchJson } from './Fetch';
+import { fetchJson } from './Fetch';
 import Routes from 'routes';
 
 export default class UserSelect extends Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
-import { fetch, fetchJson } from './Fetch';
+import { fetchJson } from './Fetch';
 import Routes from 'routes';
 import UserSelect from './UserSelect';
 
@@ -45,7 +45,7 @@ export default class EditPopup extends React.Component {
   componentDidUpdate (prevProps) {
     if (this.props.cardId != null && this.props.cardId !== prevProps.cardId) {
       this.loadCard(this.props.cardId);
-    };
+    }
   }
 
   handleNameChange = (e) => {

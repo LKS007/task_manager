@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 import { Modal, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
-import { fetch, fetchJson } from './Fetch';
+import { fetchJson } from './Fetch';
 import Routes from 'routes';
 import UserSelect from './UserSelect';
 
